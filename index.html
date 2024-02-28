@@ -14,7 +14,6 @@
 			margin: 0;
 			display: flex;
 			justify-content: center;
-			align-items: center;
 			height: 100vh;
 		}
 
@@ -52,22 +51,19 @@
 
 		p {
 			color: linen;
-			font-size: 20px;
-			margin-bottom: 20px;
-		}
-
-		.emoticon {
-			font-size: 50px;
-			margin-bottom: 20px;
+			font-size: 18px;
+			margin-bottom: 15px;
 		}
 
 		.large-emoticon {
-			font-size: 50px;
+			font-size: 40px;
 		}
 
 		#gameContainer {
 			max-width: 600px;			
 			min-width: 400px;
+			max-height: 300px;
+			min-height: 300px;
 		}
 
 		.bar {
@@ -95,7 +91,7 @@
 		}
 
 		.bar-label {
-			font-size: 16px;
+			font-size: 14px;
 			margin-bottom: 10px;
 			color: cyan;
 		}
@@ -107,27 +103,27 @@
 	<div id="gameContainer">
 		<div id="startScreen" class="level">
 			<h2>Welcome to Coding Bootcamp Adventure!</h2>
-			<p>🥳<br>Get ready to embark on a journey through the world of coding bootcamps.</p>
+			<p><span class='large-emoticon'>🥳</span><br><br>Get ready to embark on a journey through the world of coding bootcamps.</p>
 			<button onclick="startAdventure()">Start Adventure</button>
 		</div>
 
 		<div id="challenge1" class="level hidden">
 			<h2>Challenge: Create a New GitHub Repo</h2>
-			<p>😐<br>You need to create a new GitHub repository for your project. What do you call it?</p>
+			<p><span class='large-emoticon'>😐</span><br><br>You need to create a new GitHub repository for your project. What do you call it?</p>
 			<button onclick="createGitHubRepo('success')">CodeParadise</button>
 			<button onclick="createGitHubRepo('failure')">PotatoProject</button>
 		</div>
 
 		<div id="challenge2" class="level hidden">
 			<h2>Challenge: Choose a Coding Language</h2>
-			<p>😐<br>You must choose a coding language for your project. What do you choose?</p>
+			<p><span class='large-emoticon'>😐</span><br><br>You must choose a coding language for your project. What do you choose?</p>
 			<button onclick="chooseLanguage('success')">Vanilla JavaScript</button>
 			<button onclick="chooseLanguage('failure')">jQuery</button>
 		</div>
 
 		<div id="challenge3" class="level hidden">
 			<h2>Challenge: Deploy to Netlify</h2>
-			<p>😐<br>You need to deploy your project to Netlify. Are you ready?</p>
+			<p><span class='large-emoticon'>😐</span><br><br>You need to deploy your project to Netlify. Are you ready?</p>
 			<button onclick="deployToNetlify('success')">Yes, let's deploy!</button>
 			<button onclick="deployToNetlify('failure')">No, I'll do it later.</button>
 		</div>
@@ -166,12 +162,12 @@
 			if (outcome === 'success') {
 				skills += 33; // Increase skills for successful completion
 				document.getElementById('resultMessage').classList.remove('hidden');
-				document.getElementById('message').innerHTML = "😄<br><span class='large-emoticon'>🎉</span> Success! You created a GitHub repo.";
+				document.getElementById('message').innerHTML = "<span class='large-emoticon'>😄</span><br><br> Success! You created a GitHub repo.";
 				updateSkillsBar();
 			} else {
 				confidence -= 33; // Decrease confidence for failure
 				document.getElementById('resultMessage').classList.remove('hidden');
-				document.getElementById('message').innerHTML = "😭<br><span class='large-emoticon'>🥔</span> Oh no! You were marked down by Central Grading because your repo name was not unique enough.";
+				document.getElementById('message').innerHTML = "<span class='large-emoticon'>😭</span><br><br> Oh no! You were marked down by Central Grading because your repo name was not unique enough.";
 				updateConfidenceBar()
 			}
 			document.getElementById(`challenge${currentChallenge}`).classList.add('hidden');
@@ -182,12 +178,12 @@
 			if (outcome === 'success') {
 				skills += 33; // Increase skills for successful completion
 				document.getElementById('resultMessage').classList.remove('hidden');
-				document.getElementById('message').innerHTML = "😄<br><span class='large-emoticon'>🔥</span> Success! You chose JavaScript and don't have to read any new documentation.";
+				document.getElementById('message').innerHTML = "<span class='large-emoticon'>😄</span><br><br> Success! You chose JavaScript and don't have to read any new documentation.";
 				updateSkillsBar();
 			} else {
 				confidence -= 33; // Decrease confidence for failure
 				document.getElementById('resultMessage').classList.remove('hidden');
-				document.getElementById('message').innerHTML = "😭<br><span class='large-emoticon'>❓</span> Oh no! They just released jQuery 4.0, and now you have to go and read all the new documentation.";
+				document.getElementById('message').innerHTML = "<span class='large-emoticon'>😭</span><br><br> Oh no! They just released jQuery 4.0, and now you have to go and read all the new documentation.";
 				updateConfidenceBar()
 			}
 			document.getElementById(`challenge${currentChallenge}`).classList.add('hidden');
@@ -198,12 +194,12 @@
 			if (outcome === 'success') {
 				skills += 33; // Increase skills for successful completion
 				document.getElementById('resultMessage').classList.remove('hidden');
-				document.getElementById('message').innerHTML = "😄<br><span class='large-emoticon'>🚀</span> Success! Your project has been deployed to Netlify.";
+				document.getElementById('message').innerHTML = "<span class='large-emoticon'>😄</span><br><br> Success! Your project has been deployed to Netlify.";
 				updateSkillsBar();
 			} else {
 				confidence -= 33; // Decrease confidence for failure
 				document.getElementById('resultMessage').classList.remove('hidden');
-				document.getElementById('message').innerHTML = "😭<br><span class='large-emoticon'>💥</span> Oh no! You were marked down by Central Grading because your project didn't deploy correctly and has 1 million errors in the console.";
+				document.getElementById('message').innerHTML = "<span class='large-emoticon'>😭</span><br><br> Oh no! You were marked down by Central Grading because your project didn't deploy correctly and has 1 million errors in the console.";
 				updateConfidenceBar()
 			}
 			document.getElementById(`challenge${currentChallenge}`).classList.add('hidden');

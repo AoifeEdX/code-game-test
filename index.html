@@ -26,18 +26,17 @@
 		}
 
 		button {
-			background-color: #4CAF50;
-			color: white;
+			background-color: cyan;
 			padding: 10px 20px;
 			border: none;
 			border-radius: 5px;
 			cursor: pointer;
-			margin-right: 10px;
+			margin: 10px;
 			transition: background-color 0.3s;
 		}
 
 		button:hover {
-			background-color: #45a049;
+			background-color: rgb(0, 174, 255);
 		}
 
 		.hidden {
@@ -59,11 +58,10 @@
 			font-size: 40px;
 		}
 
-		#gameContainer {
-			max-width: 600px;
-			min-width: 400px;
-			max-height: 300px;
-			min-height: 300px;
+		#gameContainer, #finalScores, #resultMessage {
+			max-width: 375px;
+			min-width: 330px;
+			min-height: 310px;
 		}
 
 		.bar {
@@ -71,8 +69,6 @@
 			height: 40px;
 			border-radius: 5px;
 			margin-bottom: 20px;
-			max-width: 600px;
-			min-width: 400px;
 		}
 
 		.barFill {
@@ -103,14 +99,14 @@
 	<div id="gameContainer">
 		<div id="startScreen" class="level">
 			<h2>Welcome to Coding Bootcamp Adventure!</h2>
-			<p><span class='large-emoticon'>🤗🖥️</span><br><br>Get ready to embark on a journey through the world of coding
+			<p><span class='large-emoticon'>🤗🖥️</span><br><br><br>Get ready to embark on a journey through the world of coding
 				bootcamps.</p>
 			<button onclick="startAdventure()">Start Adventure</button>
 		</div>
 
 		<div id="challenge1" class="level hidden">
 			<h2>Challenge: Create a New GitHub Repo</h2>
-			<p><span class='large-emoticon'>😐</span><br><br>You need to create a new GitHub repository for your project. What
+			<p><span class='large-emoticon'>😐</span><br><br><br>You need to create a new GitHub repository for your project. What
 				do you call it?</p>
 			<button onclick="createGitHubRepo('success')">CodeParadise</button>
 			<button onclick="createGitHubRepo('failure')">PotatoProject</button>
@@ -118,7 +114,7 @@
 
 		<div id="challenge2" class="level hidden">
 			<h2>Challenge: Choose a Coding Language</h2>
-			<p><span class='large-emoticon'>😐</span><br><br>You must choose a coding language for your project. What do you
+			<p><span class='large-emoticon'>😐</span><br><br><br>You must choose a coding language for your project. What do you
 				choose?</p>
 			<button onclick="chooseLanguage('success')">Vanilla JavaScript</button>
 			<button onclick="chooseLanguage('failure')">jQuery</button>
@@ -126,15 +122,22 @@
 
 		<div id="challenge3" class="level hidden">
 			<h2>Challenge: Deploy to Netlify</h2>
-			<p><span class='large-emoticon'>😐</span><br><br>You need to deploy your project to Netlify. Are you ready?</p>
+			<p><span class='large-emoticon'>😐</span><br><br><br>You need to deploy your project to Netlify. Are you ready?</p>
 			<button onclick="deployToNetlify('success')">Yes, let's deploy!</button>
 			<button onclick="deployToNetlify('failure')">No, I'll do it later.</button>
 		</div>
 
 		<div id="resultMessage" class="level hidden">
-			<h2>Result</h2>
+			<h2>Result<br><br></h2>
 			<p id="message"></p>
 			<button id="continueButton" onclick="continueAdventure()">Continue Adventure</button>
+		</div>
+
+		<div id="finalScores" class="level hidden">
+			<h2>Final Scores<br><br></h2>
+			<p>Skills: <span id="finalSkills"></span></p>
+			<p>Confidence: <span id="finalConfidence"></span></p>
+			<button onclick="restartAdventure()">Play Again</button>
 		</div>
 
 		<div class="bar skills level">
@@ -148,8 +151,9 @@
 		</div>
 	</div>
 
+
+
 	<script>
-		// JavaScript logic
 		let currentChallenge = 1;
 		let skills = 1;
 		let confidence = 100;
@@ -163,14 +167,14 @@
 
 		function createGitHubRepo(outcome) {
 			if (outcome === 'success') {
-				skills += 33; // Increase skills for successful completion
+				skills += 33;
 				document.getElementById('resultMessage').classList.remove('hidden');
-				document.getElementById('message').innerHTML = "<span class='large-emoticon'>😄</span><br><br> Success! You created a new GitHub repo.";
+				document.getElementById('message').innerHTML = "<span class='large-emoticon'>😄</span><br><br><br> Success! You created a new GitHub repo.";
 				updateSkillsBar();
 			} else {
-				confidence -= 33; // Decrease confidence for failure
+				confidence -= 33;
 				document.getElementById('resultMessage').classList.remove('hidden');
-				document.getElementById('message').innerHTML = "<span class='large-emoticon'>😭</span><br><br> Oh no! You were marked down by Central Grading because your repo name was not unique enough.";
+				document.getElementById('message').innerHTML = "<span class='large-emoticon'>😭</span><br><br><br> Oh no! You were marked down by Central Grading because your repo name was not unique enough.";
 				updateConfidenceBar()
 			}
 			document.getElementById(`challenge${currentChallenge}`).classList.add('hidden');
@@ -179,14 +183,14 @@
 
 		function chooseLanguage(outcome) {
 			if (outcome === 'success') {
-				skills += 33; // Increase skills for successful completion
+				skills += 33;
 				document.getElementById('resultMessage').classList.remove('hidden');
-				document.getElementById('message').innerHTML = "<span class='large-emoticon'>😄</span><br><br> Success! You chose JavaScript and don't have to read any new documentation.";
+				document.getElementById('message').innerHTML = "<span class='large-emoticon'>😄</span><br><br><br> Success! You chose JavaScript and don't have to read any new documentation.";
 				updateSkillsBar();
 			} else {
-				confidence -= 33; // Decrease confidence for failure
+				confidence -= 33;
 				document.getElementById('resultMessage').classList.remove('hidden');
-				document.getElementById('message').innerHTML = "<span class='large-emoticon'>😭</span><br><br> Oh no! They just released jQuery 4.0, and now you have to go and read all the new documentation.";
+				document.getElementById('message').innerHTML = "<span class='large-emoticon'>😭</span><br><br><br> Oh no! They just released jQuery 4.0, and now you have to go and read all the new documentation.";
 				updateConfidenceBar()
 			}
 			document.getElementById(`challenge${currentChallenge}`).classList.add('hidden');
@@ -195,35 +199,19 @@
 
 		function deployToNetlify(outcome) {
 			if (outcome === 'success') {
-				skills += 33; // Increase skills for successful completion
+				skills += 33;
 				document.getElementById('resultMessage').classList.remove('hidden');
-				document.getElementById('message').innerHTML = "<span class='large-emoticon'>😄</span><br><br> Success! Your project has been deployed to Netlify.";
+				document.getElementById('message').innerHTML = "<span class='large-emoticon'>😄</span><br><br><br> Success! Your project has been deployed to Netlify.";
 				updateSkillsBar();
 			} else {
-				confidence -= 33; // Decrease confidence for failure
+				confidence -= 33;
 				document.getElementById('resultMessage').classList.remove('hidden');
-				document.getElementById('message').innerHTML = "<span class='large-emoticon'>😭</span><br><br> Oh no! You were marked down by Central Grading because your project didn't deploy correctly and has 1 million errors in the console.";
+				document.getElementById('message').innerHTML = "<span class='large-emoticon'>😭</span><br><br><br> Oh no! You were marked down by Central Grading because your project didn't deploy correctly and has 1 million errors in the console.";
 				updateConfidenceBar()
 			}
 			document.getElementById(`challenge${currentChallenge}`).classList.add('hidden');
 			document.getElementById('resultMessage').classList.remove('hidden');
 		}
-
-		function continueAdventure() {
-			document.getElementById('resultMessage').classList.add('hidden');
-			currentChallenge++;
-			if (currentChallenge === 4) {
-				// All challenges completed, display victory message
-				document.getElementById('resultMessage').classList.remove('hidden');
-				document.getElementById('message').innerText = "Congratulations! You've completed all challenges.";
-				// Hide the "Continue Adventure" button
-				document.getElementById('continueButton').classList.add('hidden');
-			} else {
-				// Continue to the next challenge
-				document.getElementById(`challenge${currentChallenge}`).classList.remove('hidden');
-			}
-		}
-
 
 		function updateSkillsBar() {
 			const skillsPercentage = Math.max(Math.min(skills, 100), 0);
@@ -233,8 +221,24 @@
 			const confidencePercentage = Math.max(Math.min(confidence, 100), 0);
 			document.querySelector('.confidence .barFill').style.width = `${confidencePercentage}%`;
 		}
-	</script>
 
+		function restartAdventure() {
+			location.reload();
+		}
+
+		function continueAdventure() {
+			document.getElementById('resultMessage').classList.add('hidden');
+			currentChallenge++;
+			if (currentChallenge === 4) {
+				document.getElementById('finalSkills').innerText = skills;
+				document.getElementById('finalConfidence').innerText = confidence;
+				document.getElementById('finalScores').classList.remove('hidden');
+				document.getElementById('continueButton').classList.add('hidden');
+			} else {
+				document.getElementById(`challenge${currentChallenge}`).classList.remove('hidden');
+			}
+		}
+	</script>
 </body>
 
 </html>

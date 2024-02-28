@@ -60,7 +60,7 @@
 		}
 
 		#gameContainer {
-			max-width: 600px;			
+			max-width: 600px;
 			min-width: 400px;
 			max-height: 300px;
 			min-height: 300px;
@@ -103,20 +103,23 @@
 	<div id="gameContainer">
 		<div id="startScreen" class="level">
 			<h2>Welcome to Coding Bootcamp Adventure!</h2>
-			<p><span class='large-emoticon'>🥳</span><br><br>Get ready to embark on a journey through the world of coding bootcamps.</p>
+			<p><span class='large-emoticon'>🥳</span><br><br>Get ready to embark on a journey through the world of coding
+				bootcamps.</p>
 			<button onclick="startAdventure()">Start Adventure</button>
 		</div>
 
 		<div id="challenge1" class="level hidden">
 			<h2>Challenge: Create a New GitHub Repo</h2>
-			<p><span class='large-emoticon'>😐</span><br><br>You need to create a new GitHub repository for your project. What do you call it?</p>
+			<p><span class='large-emoticon'>😐</span><br><br>You need to create a new GitHub repository for your project. What
+				do you call it?</p>
 			<button onclick="createGitHubRepo('success')">CodeParadise</button>
 			<button onclick="createGitHubRepo('failure')">PotatoProject</button>
 		</div>
 
 		<div id="challenge2" class="level hidden">
 			<h2>Challenge: Choose a Coding Language</h2>
-			<p><span class='large-emoticon'>😐</span><br><br>You must choose a coding language for your project. What do you choose?</p>
+			<p><span class='large-emoticon'>😐</span><br><br>You must choose a coding language for your project. What do you
+				choose?</p>
 			<button onclick="chooseLanguage('success')">Vanilla JavaScript</button>
 			<button onclick="chooseLanguage('failure')">jQuery</button>
 		</div>
@@ -131,7 +134,7 @@
 		<div id="resultMessage" class="level hidden">
 			<h2>Result</h2>
 			<p id="message"></p>
-			<button onclick="continueAdventure()">Continue Adventure</button>
+			<button id="continueButton" onclick="continueAdventure()">Continue Adventure</button>
 		</div>
 
 		<div class="bar skills level">
@@ -162,7 +165,7 @@
 			if (outcome === 'success') {
 				skills += 33; // Increase skills for successful completion
 				document.getElementById('resultMessage').classList.remove('hidden');
-				document.getElementById('message').innerHTML = "<span class='large-emoticon'>😄</span><br><br> Success! You created a GitHub repo.";
+				document.getElementById('message').innerHTML = "<span class='large-emoticon'>😄</span><br><br> Success! You created a new GitHub repo.";
 				updateSkillsBar();
 			} else {
 				confidence -= 33; // Decrease confidence for failure
@@ -213,11 +216,14 @@
 				// All challenges completed, display victory message
 				document.getElementById('resultMessage').classList.remove('hidden');
 				document.getElementById('message').innerText = "Congratulations! You've completed all challenges.";
+				// Hide the "Continue Adventure" button
+				document.getElementById('continueButton').classList.add('hidden');
 			} else {
 				// Continue to the next challenge
 				document.getElementById(`challenge${currentChallenge}`).classList.remove('hidden');
 			}
 		}
+
 
 		function updateSkillsBar() {
 			const skillsPercentage = Math.max(Math.min(skills, 100), 0);
